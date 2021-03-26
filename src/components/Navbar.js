@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Button } from './Button';
 import "../style/Navbar.css";
@@ -18,14 +18,19 @@ function Navbar() {
     } else {
       setButton(true);
     }
-  }
+  };
+
+  //check on load
+  useEffect(() => {
+    showButton();
+  }, []);
   //checks to show button on resize;
   window.addEventListener("resize", showButton);
   return (
     <nav className="navbar">
       <div className="navbar-container">
         {/* logo/title */}
-        <Link to="/"  className="navbar-logo">
+        <Link to="/"  className="navbar-logo" onClick={closeMobileMenu}>
           TRVL <i className="fab fa-typo3"></i>  
         </Link>
         {/* hamburger menu */}
